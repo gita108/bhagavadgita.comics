@@ -1,0 +1,11 @@
+# Appfile for iOS
+app_identifier("net.nativemind.mbharata_client") # The bundle identifier of your app
+apple_id("your-apple-id@example.com") # Your Apple ID email address
+
+itc_team_id("") # App Store Connect Team ID
+team_id("") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
+
+

@@ -1,0 +1,125 @@
+# Fastfile for Mahabharata App
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#     https://docs.fastlane.tools/actions
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Push a new beta build to TestFlight"
+  lane :beta do
+    # Increment build number
+    increment_build_number(xcodeproj: "ios/Runner.xcodeproj")
+    
+    # Build the app
+    build_app(
+      workspace: "ios/Runner.xcworkspace",
+      scheme: "Runner",
+      export_method: "app-store",
+      export_options: {
+        provisioningProfiles: {
+          "net.nativemind.mbharata_client" => "match AppStore net.nativemind.mbharata_client"
+        }
+      }
+    )
+    
+    # Upload to TestFlight
+    upload_to_testflight(
+      skip_waiting_for_build_processing: true
+    )
+  end
+
+  desc "Push a new release build to the App Store"
+  lane :release do
+    # Increment version
+    increment_version_number(
+      xcodeproj: "ios/Runner.xcodeproj",
+      bump_type: "minor"
+    )
+    
+    # Increment build number
+    increment_build_number(xcodeproj: "ios/Runner.xcodeproj")
+    
+    # Build the app
+    build_app(
+      workspace: "ios/Runner.xcworkspace",
+      scheme: "Runner",
+      export_method: "app-store"
+    )
+    
+    # Upload to App Store
+    upload_to_app_store(
+      force: true,
+      skip_metadata: false,
+      skip_screenshots: false,
+      precheck_include_in_app_purchases: false
+    )
+  end
+
+  desc "Deploy a new version to the App Store"
+  lane :deploy do
+    # Match certificates
+    match(type: "appstore", readonly: true)
+    
+    # Build and release
+    beta
+  end
+
+  desc "Setup code signing with match"
+  lane :setup_signing do
+    match(
+      type: "development",
+      readonly: false
+    )
+    match(
+      type: "appstore",
+      readonly: false
+    )
+  end
+end
+
+platform :android do
+  desc "Deploy a new version to the Google Play Store"
+  lane :deploy do
+    # Build the Android app
+    gradle(
+      task: "clean bundleRelease",
+      project_dir: "android/"
+    )
+    
+    # Upload to Play Store
+    upload_to_play_store(
+      track: "internal",
+      aab: "build/app/outputs/bundle/release/app-release.aab"
+    )
+  end
+
+  desc "Build Android App Bundle for release"
+  lane :build do
+    gradle(
+      task: "clean bundleRelease",
+      project_dir: "android/"
+    )
+  end
+
+  desc "Push a new beta build to Play Store Beta track"
+  lane :beta do
+    gradle(
+      task: "clean bundleRelease",
+      project_dir: "android/"
+    )
+    
+    upload_to_play_store(
+      track: "beta",
+      aab: "build/app/outputs/bundle/release/app-release.aab"
+    )
+  end
+end
+
+

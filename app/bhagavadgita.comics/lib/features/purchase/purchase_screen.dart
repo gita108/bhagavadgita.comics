@@ -1,0 +1,19 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../core/theme/app_theme.dart';
+
+class PurchaseScreen extends ConsumerWidget {
+  const PurchaseScreen({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Purchases'),
+      ),
+      body: const Center(
+        child: Text('Purchase Screen'),
+      ),
+    );
+  }
+}
