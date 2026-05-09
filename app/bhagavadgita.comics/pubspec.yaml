@@ -52,6 +52,10 @@ dependencies:
   just_audio: ^0.9.40
   audio_service: ^0.18.15
 
+  #Custom
+  flutter_comics: ^0.0.2
+  flutter_versegrid: ^0.0.1
+
 
 dev_dependencies:
   flutter_test:
