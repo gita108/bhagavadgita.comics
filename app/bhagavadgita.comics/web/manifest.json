@@ -1,6 +1,6 @@
 {
-    "name": "mbharata_client",
-    "short_name": "mbharata_client",
+    "name": "bhagavadgita_comics",
+    "short_name": "bhagavadgita_comics",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

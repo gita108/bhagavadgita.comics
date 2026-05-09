@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "net.nativemind" "\0"
-            VALUE "FileDescription", "mbharata_client" "\0"
+            VALUE "CompanyName", "net.nativemind.bhagavadgita.comics" "\0"
+            VALUE "FileDescription", "bhagavadgita_comics" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "mbharata_client" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2025 net.nativemind. All rights reserved." "\0"
-            VALUE "OriginalFilename", "mbharata_client.exe" "\0"
-            VALUE "ProductName", "mbharata_client" "\0"
+            VALUE "InternalName", "bhagavadgita_comics" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 net.nativemind.bhagavadgita.comics. All rights reserved." "\0"
+            VALUE "OriginalFilename", "bhagavadgita_comics.exe" "\0"
+            VALUE "ProductName", "bhagavadgita_comics" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
