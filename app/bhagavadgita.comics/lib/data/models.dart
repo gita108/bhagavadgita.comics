@@ -45,13 +45,13 @@ class Sloka {
 }
 
 class VocabEntry {
-  VocabEntry(this.token, this.meaning);
+  const VocabEntry(this.token, this.meaning);
   final String token;
   final String meaning;
 }
 
 class Commentary {
-  Commentary({
+  const Commentary({
     required this.initials,
     required this.author,
     required this.text,
